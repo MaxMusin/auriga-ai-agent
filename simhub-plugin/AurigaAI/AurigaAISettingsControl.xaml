@@ -1,0 +1,105 @@
+<UserControl x:Class="AurigaAI.AurigaAISettingsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- Titre -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" 
+                   Text="Auriga AI - Optimisation de setup iRacing" 
+                   FontSize="20" FontWeight="Bold" Margin="0,0,0,20"/>
+        
+        <!-- URL de l'API -->
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="URL de l'API:" 
+                   VerticalAlignment="Center" Margin="0,0,10,0"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="ApiUrlTextBox" 
+                 Margin="0,5" Padding="5"/>
+        
+        <!-- Évaluations subjectives -->
+        <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" 
+                   Text="Évaluations subjectives (1-10)" 
+                   FontWeight="Bold" Margin="0,20,0,10"/>
+        
+        <!-- Stabilité générale -->
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Stabilité de la voiture:" 
+                   VerticalAlignment="Center" Margin="0,0,10,0"/>
+        <Slider Grid.Row="3" Grid.Column="1" Name="CarStabilitySlider" 
+                Minimum="1" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True"
+                VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding ElementName=CarStabilitySlider, Path=Value, StringFormat=N0}" 
+                   VerticalAlignment="Center" Margin="10,0,0,0"/>
+        
+        <!-- Stabilité en entrée de virage -->
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Stabilité en entrée de virage:" 
+                   VerticalAlignment="Center" Margin="0,0,10,0"/>
+        <Slider Grid.Row="4" Grid.Column="1" Name="CornerEntryStabilitySlider" 
+                Minimum="1" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True"
+                VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding ElementName=CornerEntryStabilitySlider, Path=Value, StringFormat=N0}" 
+                   VerticalAlignment="Center" Margin="10,0,0,0"/>
+        
+        <!-- Stabilité en sortie de virage -->
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Stabilité en sortie de virage:" 
+                   VerticalAlignment="Center" Margin="0,0,10,0"/>
+        <Slider Grid.Row="5" Grid.Column="1" Name="CornerExitStabilitySlider" 
+                Minimum="1" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True"
+                VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding ElementName=CornerExitStabilitySlider, Path=Value, StringFormat=N0}" 
+                   VerticalAlignment="Center" Margin="10,0,0,0"/>
+        
+        <!-- Traction -->
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="Traction:" 
+                   VerticalAlignment="Center" Margin="0,0,10,0"/>
+        <Slider Grid.Row="6" Grid.Column="1" Name="TractionSlider" 
+                Minimum="1" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True"
+                VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="6" Grid.Column="2" Text="{Binding ElementName=TractionSlider, Path=Value, StringFormat=N0}" 
+                   VerticalAlignment="Center" Margin="10,0,0,0"/>
+        
+        <!-- Stabilité au freinage -->
+        <TextBlock Grid.Row="7" Grid.Column="0" Text="Stabilité au freinage:" 
+                   VerticalAlignment="Center" Margin="0,0,10,0"/>
+        <Slider Grid.Row="7" Grid.Column="1" Name="BrakingStabilitySlider" 
+                Minimum="1" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True"
+                VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="7" Grid.Column="2" Text="{Binding ElementName=BrakingStabilitySlider, Path=Value, StringFormat=N0}" 
+                   VerticalAlignment="Center" Margin="10,0,0,0"/>
+        
+        <!-- Notes du pilote -->
+        <TextBlock Grid.Row="8" Grid.Column="0" Text="Notes:" 
+                   VerticalAlignment="Top" Margin="0,10,10,0"/>
+        <TextBox Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Name="DriverNotesTextBox" 
+                 TextWrapping="Wrap" AcceptsReturn="True" Height="100" Margin="0,10,0,0"/>
+        
+        <!-- Boutons -->
+        <StackPanel Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3" 
+                    Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Name="StartTestButton" Content="Démarrer le test" 
+                    Padding="10,5" Margin="0,0,10,0" Click="StartTestButton_Click"/>
+            <Button Name="StopTestButton" Content="Arrêter le test" 
+                    Padding="10,5" Margin="0,0,10,0" Click="StopTestButton_Click"/>
+            <Button Name="SaveButton" Content="Sauvegarder" 
+                    Padding="10,5" Click="SaveButton_Click"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

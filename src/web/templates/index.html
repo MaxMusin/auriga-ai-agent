@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 text-center mb-5">
+        <h1>Auriga AI</h1>
+        <h3>Optimisation intelligente de setup pour iRacing</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Statut de l'optimisation</h5>
+            </div>
+            <div class="card-body" id="optimization-status">
+                <div class="text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Chargement...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Actions</h5>
+            </div>
+            <div class="card-body">
+                <form id="optimization-form">
+                    <div class="mb-3">
+                        <label for="car-select" class="form-label">Voiture</label>
+                        <select class="form-select" id="car-select" required>
+                            <option value="" selected disabled>Sélectionner une voiture</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="track-select" class="form-label">Circuit</label>
+                        <select class="form-select" id="track-select" required>
+                            <option value="" selected disabled>Sélectionner un circuit</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="start-optimization-btn">Démarrer l'optimisation</button>
+                    <button type="button" class="btn btn-danger" id="stop-optimization-btn">Arrêter l'optimisation</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>Derniers setups testés</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped" id="recent-setups-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Voiture</th>
+                                <th>Circuit</th>
+                                <th>Date</th>
+                                <th>Score</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="6" class="text-center">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Chargement...</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('web.static', filename='js/index.js') }}"></script>
+{% endblock %}

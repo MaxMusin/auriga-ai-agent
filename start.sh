@@ -4,7 +4,7 @@
 source venv/bin/activate
 
 # Définition des variables d'environnement
-export API_PORT=8080
+export API_PORT=8090
 export API_HOST=0.0.0.0
 export DEBUG_MODE=True
 

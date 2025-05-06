@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}Tableau de bord - Auriga AI{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <h1>Tableau de bord</h1>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Filtres</h5>
+            </div>
+            <div class="card-body">
+                <form id="filter-form" class="row g-3">
+                    <div class="col-md-5">
+                        <label for="car-select" class="form-label">Voiture</label>
+                        <select class="form-select" id="car-select" required>
+                            <option value="" selected disabled>Sélectionner une voiture</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="track-select" class="form-label">Circuit</label>
+                        <select class="form-select" id="track-select" required>
+                            <option value="" selected disabled>Sélectionner un circuit</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary w-100">Appliquer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header">
+                <h5>Évolution du temps au tour</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="lap-time-chart"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header">
+                <h5>Évolution du score</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="score-chart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Setups testés</h5>
+                <div>
+                    <button class="btn btn-sm btn-outline-primary" id="refresh-setups-btn">
+                        <i class="bi bi-arrow-clockwise"></i> Actualiser
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped" id="setups-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Date</th>
+                                <th>Source</th>
+                                <th>Temps au tour</th>
+                                <th>Score</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="6" class="text-center">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Chargement...</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <nav>
+                    <ul class="pagination justify-content-center" id="pagination">
+                        <!-- Pagination générée par JavaScript -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('web.static', filename='js/dashboard.js') }}"></script>
+{% endblock %}
